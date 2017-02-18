@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        button {
+            
+            border-radius: 20px;
+            display: block;
+            margin: 0 auto;
+            margin-top: 2cm;
+            height: 30px;
+            
+            color:#666;
+            font-weight:bold;
+            border: solid #666 1px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function auth() {
+            window.location.replace("#authToken=" + sessionStorage.getItem('installationId'));
+        }
+
+        function setInstallationId(installationId) {
+            sessionStorage.setItem('installationId', installationId);
+        };
+    </script>
+</head>
+
+<body>
+    <p>
+        <button onclick="setInstallationId('6bac534b-ac1a-4b50-83d6-09ffb5eb63e1')">Set Installation Id as 6bac534b-ac1a-4b50-83d6-09ffb5eb63e1</button>
+    </p>
+    <p>
+        <button onclick="auth()">Auth</button>
+    </p>
+</body>
+
+</html>
