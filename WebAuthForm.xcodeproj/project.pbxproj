@@ -11,6 +11,9 @@
 		B564BD741E55DC5800B312A4 /* WebViewAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564BD731E55DC5800B312A4 /* WebViewAuthenticator.swift */; };
 		B564BD7A1E55F8E200B312A4 /* UIViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B564BD791E55F8E200B312A4 /* UIViewController+Layout.swift */; };
 		B56C5C841E575312008A0C41 /* TokenParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56C5C831E575312008A0C41 /* TokenParser.swift */; };
+		B597E8A81E5B2EBE001EA62A /* WebViewAuthenticatorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597E8A71E5B2EBE001EA62A /* WebViewAuthenticatorError.swift */; };
+		B597E8AA1E5B2EE4001EA62A /* WebViewAuthenticatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597E8A91E5B2EE4001EA62A /* WebViewAuthenticatorProtocol.swift */; };
+		B597E8AD1E5B3169001EA62A /* TokenStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B597E8AC1E5B3169001EA62A /* TokenStorage.swift */; };
 		B5AE39F21E54848500015DE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AE39F11E54848500015DE8 /* AppDelegate.swift */; };
 		B5AE39F41E54848500015DE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AE39F31E54848500015DE8 /* ViewController.swift */; };
 		B5AE39F91E54848500015DE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5AE39F81E54848500015DE8 /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		B564BD731E55DC5800B312A4 /* WebViewAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewAuthenticator.swift; sourceTree = "<group>"; };
 		B564BD791E55F8E200B312A4 /* UIViewController+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Layout.swift"; sourceTree = "<group>"; };
 		B56C5C831E575312008A0C41 /* TokenParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenParser.swift; sourceTree = "<group>"; };
+		B597E8A71E5B2EBE001EA62A /* WebViewAuthenticatorError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewAuthenticatorError.swift; sourceTree = "<group>"; };
+		B597E8A91E5B2EE4001EA62A /* WebViewAuthenticatorProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewAuthenticatorProtocol.swift; sourceTree = "<group>"; };
+		B597E8AC1E5B3169001EA62A /* TokenStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenStorage.swift; sourceTree = "<group>"; };
 		B5AE39EE1E54848500015DE8 /* WebAuthForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebAuthForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5AE39F11E54848500015DE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5AE39F31E54848500015DE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +55,7 @@
 			children = (
 				B564BD791E55F8E200B312A4 /* UIViewController+Layout.swift */,
 				B564BD711E55D9D000B312A4 /* RootViewController.swift */,
+				B56C5C831E575312008A0C41 /* TokenParser.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -72,6 +79,16 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		B597E8AB1E5B310E001EA62A /* Authentificator */ = {
+			isa = PBXGroup;
+			children = (
+				B564BD731E55DC5800B312A4 /* WebViewAuthenticator.swift */,
+				B597E8A71E5B2EBE001EA62A /* WebViewAuthenticatorError.swift */,
+				B597E8A91E5B2EE4001EA62A /* WebViewAuthenticatorProtocol.swift */,
+			);
+			name = Authentificator;
+			sourceTree = "<group>";
+		};
 		B5AE39E51E54848400015DE8 = {
 			isa = PBXGroup;
 			children = (
@@ -92,12 +109,12 @@
 		B5AE39F01E54848500015DE8 /* WebAuthForm */ = {
 			isa = PBXGroup;
 			children = (
+				B5AE39F31E54848500015DE8 /* ViewController.swift */,
+				B597E8AC1E5B3169001EA62A /* TokenStorage.swift */,
 				B564BD771E55F82900B312A4 /* Misc */,
 				B535C2091E58103F006BF132 /* Service */,
 				B564BD781E55F88F00B312A4 /* Data */,
-				B5AE39F31E54848500015DE8 /* ViewController.swift */,
-				B564BD731E55DC5800B312A4 /* WebViewAuthenticator.swift */,
-				B56C5C831E575312008A0C41 /* TokenParser.swift */,
+				B597E8AB1E5B310E001EA62A /* Authentificator */,
 			);
 			path = WebAuthForm;
 			sourceTree = "<group>";
@@ -177,9 +194,12 @@
 				B564BD7A1E55F8E200B312A4 /* UIViewController+Layout.swift in Sources */,
 				B5AE39F41E54848500015DE8 /* ViewController.swift in Sources */,
 				B5AE39F21E54848500015DE8 /* AppDelegate.swift in Sources */,
+				B597E8A81E5B2EBE001EA62A /* WebViewAuthenticatorError.swift in Sources */,
 				B564BD741E55DC5800B312A4 /* WebViewAuthenticator.swift in Sources */,
 				B56C5C841E575312008A0C41 /* TokenParser.swift in Sources */,
 				B564BD721E55D9D000B312A4 /* RootViewController.swift in Sources */,
+				B597E8AD1E5B3169001EA62A /* TokenStorage.swift in Sources */,
+				B597E8AA1E5B2EE4001EA62A /* WebViewAuthenticatorProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

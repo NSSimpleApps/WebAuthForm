@@ -9,11 +9,12 @@
 import UIKit
 
 /// разширение для `UIViewController` для добавления
-/// вьюхи с отступами
+/// вьюхи с отступами относительно margins по горизонтали
+/// и {top,bottom}LayoutGuide по вертикали
 public extension UIViewController {
     
     // MARK: service method
-    public func addSubview(_ subView: UIView, withInsets insets: UIEdgeInsets = .zero) {
+    public func placeSubview(_ subView: UIView, withInsets insets: UIEdgeInsets) {
         
         subView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -26,7 +27,7 @@ public extension UIViewController {
                                toItem: subView,
                                attribute: .leading,
                                multiplier: 1,
-                               constant: 16 - insets.left)
+                               constant: -insets.left)
         let trailingConstraint =
             NSLayoutConstraint(item: view,
                                attribute: .trailingMargin,
@@ -34,7 +35,7 @@ public extension UIViewController {
                                toItem: subView,
                                attribute: .trailing,
                                multiplier: 1,
-                               constant: -16 + insets.right)
+                               constant: insets.right)
         let topConstraint =
             NSLayoutConstraint(item: subView,
                                attribute: .top,
@@ -42,7 +43,7 @@ public extension UIViewController {
                                toItem: topLayoutGuide,
                                attribute: .bottom,
                                multiplier: 1,
-                               constant: 0 + insets.top)
+                               constant: insets.top)
         let bottomConstraint =
             NSLayoutConstraint(item: bottomLayoutGuide,
                                attribute: .top,
@@ -50,7 +51,7 @@ public extension UIViewController {
                                toItem: subView,
                                attribute: .bottom,
                                multiplier: 1,
-                               constant: 0 + insets.bottom)
+                               constant: insets.bottom)
         
         NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
     }

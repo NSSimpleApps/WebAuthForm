@@ -15,6 +15,7 @@ open class ViewController: UIViewController {
     
     // MARK: properties
     open var authenticator = WebViewAuthenticator(authTokenKey: "authToken")
+    open var tokenStorage = TokenStorage()
     
     // MARK: overrides
     override open func viewDidLoad() {
@@ -30,7 +31,7 @@ open class ViewController: UIViewController {
         
         authenticator.delegate = self
         
-        addSubview(webView)
+        placeSubview(webView, withInsets: .zero)
         
         let url = Bundle.main.url(forResource: "test_SPA", withExtension: "HTML")!
         
@@ -41,14 +42,21 @@ open class ViewController: UIViewController {
 // MARK: `WebViewAuthenticatorProtocol` conformance
 extension ViewController: WebViewAuthenticatorProtocol {
     
+    public func webViewAuthenticator(_ webViewAuthenticator: WebViewAuthenticator, didLoadWebView webView: WKWebView) {
+        
+        webViewAuthenticator.setInstallationId(tokenStorage.token, inWebView: webView)
+    }
+    
     public func webViewAuthenticator(_ webViewAuthenticator: WebViewAuthenticator, didReceiveToken token: String, inWebView webView: WKWebView) {
         
         print(token)
         
-        if (token != "null") {
+        if (token == tokenStorage.token) {
             
-            // передаем токен для сохранения другому классу
-            // после окончания аутентификации можем переназначить делагат у WKWebView
+            print("OK")
+            
+            // переназначаем делегат у webView, чтобы изменить ее поведение
+            // после аутентификации
         }
     }
     

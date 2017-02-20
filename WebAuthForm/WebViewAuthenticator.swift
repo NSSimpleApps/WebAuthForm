@@ -9,40 +9,6 @@
 import UIKit
 import WebKit
 
-/// ошибка парсинга hash
-public enum WebViewAuthenticatorError: Error {
-    
-    // MARK: cases
-    case parseError(tokenKey: String)
-    
-    // MARK: properties
-    var localizedDescription: String {
-        
-        switch self {
-        
-        case .parseError(let token):
-            
-            return "Value for tokenKey: \"\(token)\" cannot be parsed."
-        }
-    }
-}
-
-/// протокол аутентификации
-public protocol WebViewAuthenticatorProtocol: class {
-    
-    /// вызывается у делегата, когда из hash извлекается значение
-    /// с указанным ключом
-    func webViewAuthenticator(_ webViewAuthenticator: WebViewAuthenticator,
-                              didReceiveToken token: String,
-                              inWebView webView: WKWebView)
-    
-    /// вызывается у делегата адрес ошибочен или hash не может быть
-    /// правильно распарсен
-    func webViewAuthenticator(_ webViewAuthenticator: WebViewAuthenticator,
-                              authDidFailWithError error: Error,
-                              inWebView webView: WKWebView)
-}
-
 open class WebViewAuthenticator: NSObject {
     
     // MARK: properties
@@ -57,10 +23,28 @@ open class WebViewAuthenticator: NSObject {
         
         self.authTokenKey = authTokenKey
     }
+    
+    open func setInstallationId(_ setInstallationId: String, inWebView webView: WKWebView) {
+        
+        let method = "setInstallationId('\(setInstallationId)')"
+        
+        webView.evaluateJavaScript(method) { (response: Any?, error: Error?) in
+            
+            if let error = error {
+                
+                self.delegate?.webViewAuthenticator(self, authDidFailWithError: error, inWebView: webView)
+            }
+        }
+    }
 }
 
 // MARK: `WKNavigationDelegate` conformance
 extension WebViewAuthenticator: WKNavigationDelegate {
+    
+    public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        delegate?.webViewAuthenticator(self, didLoadWebView: webView)
+    }
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
         
