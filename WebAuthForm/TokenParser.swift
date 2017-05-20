@@ -33,7 +33,7 @@ open class TokenParser {
                     scanner.scanLocation = delimiterLocation + 1
                     scanner.scanUpTo("&", into: &result)
                     
-                    return result as? String
+                    return result as String?
                 }
             }
         }
