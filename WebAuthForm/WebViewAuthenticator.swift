@@ -54,7 +54,7 @@ extension WebViewAuthenticator: WKNavigationDelegate {
             
             webView.evaluateJavaScript("window.location.hash") { (response: Any?, error: Error?) in
                 
-                if let hash = response as? String, hash.characters.count > 0 {
+                if let hash = response as? String, hash.isEmpty == false {
                     
                     if let token = TokenParser.token(forKey: self.authTokenKey, inHash: hash) {
                         
