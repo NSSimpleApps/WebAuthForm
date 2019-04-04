@@ -14,14 +14,14 @@ import UIKit
 public extension UIViewController {
     
     // MARK: service method
-    public func placeSubview(_ subView: UIView, withInsets insets: UIEdgeInsets) {
+    func placeSubview(_ subView: UIView, withInsets insets: UIEdgeInsets) {
         
         subView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(subView)
         
         let leadingConstraint =
-            NSLayoutConstraint(item: view,
+            NSLayoutConstraint(item: self.view!,
                                attribute: .leadingMargin,
                                relatedBy: .equal,
                                toItem: subView,
@@ -29,7 +29,7 @@ public extension UIViewController {
                                multiplier: 1,
                                constant: -insets.left)
         let trailingConstraint =
-            NSLayoutConstraint(item: view,
+            NSLayoutConstraint(item: self.view!,
                                attribute: .trailingMargin,
                                relatedBy: .equal,
                                toItem: subView,
@@ -40,12 +40,12 @@ public extension UIViewController {
             NSLayoutConstraint(item: subView,
                                attribute: .top,
                                relatedBy: .equal,
-                               toItem: topLayoutGuide,
+                               toItem: self.topLayoutGuide,
                                attribute: .bottom,
                                multiplier: 1,
                                constant: insets.top)
         let bottomConstraint =
-            NSLayoutConstraint(item: bottomLayoutGuide,
+            NSLayoutConstraint(item: self.bottomLayoutGuide,
                                attribute: .top,
                                relatedBy: .equal,
                                toItem: subView,
