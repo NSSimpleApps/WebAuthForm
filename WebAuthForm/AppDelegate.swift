@@ -10,13 +10,9 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    // MARK: - properties
     var window: UIWindow?
-
-    // MARK: - `UIApplicationDelegate` conformance
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = RootViewController.rootViewController
         self.window?.makeKeyAndVisible()

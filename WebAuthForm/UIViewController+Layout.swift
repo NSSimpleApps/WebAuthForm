@@ -15,44 +15,13 @@ public extension UIViewController {
     
     // MARK: service method
     func placeSubview(_ subView: UIView, withInsets insets: UIEdgeInsets) {
-        
         subView.translatesAutoresizingMaskIntoConstraints = false
-        
+        let view = self.view!
         view.addSubview(subView)
-        
-        let leadingConstraint =
-            NSLayoutConstraint(item: self.view!,
-                               attribute: .leadingMargin,
-                               relatedBy: .equal,
-                               toItem: subView,
-                               attribute: .leading,
-                               multiplier: 1,
-                               constant: -insets.left)
-        let trailingConstraint =
-            NSLayoutConstraint(item: self.view!,
-                               attribute: .trailingMargin,
-                               relatedBy: .equal,
-                               toItem: subView,
-                               attribute: .trailing,
-                               multiplier: 1,
-                               constant: insets.right)
-        let topConstraint =
-            NSLayoutConstraint(item: subView,
-                               attribute: .top,
-                               relatedBy: .equal,
-                               toItem: self.topLayoutGuide,
-                               attribute: .bottom,
-                               multiplier: 1,
-                               constant: insets.top)
-        let bottomConstraint =
-            NSLayoutConstraint(item: self.bottomLayoutGuide,
-                               attribute: .top,
-                               relatedBy: .equal,
-                               toItem: subView,
-                               attribute: .bottom,
-                               multiplier: 1,
-                               constant: insets.bottom)
-        
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        let layoutMarginsGuide = view.layoutMarginsGuide
+        subView.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor, constant: insets.left).isActive = true
+        subView.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor, constant: -insets.right).isActive = true
+        subView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: insets.top).isActive = true
+        subView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor, constant: -insets.bottom).isActive = true
     }
 }

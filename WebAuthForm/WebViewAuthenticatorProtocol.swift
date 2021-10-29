@@ -9,7 +9,7 @@
 import WebKit
 
 /// протокол аутентификации
-public protocol WebViewAuthenticatorProtocol: class {
+public protocol WebViewAuthenticatorProtocol: AnyObject {
     
     /// вызывается у делегата, когда из веб-форма загрузилась
     func webViewAuthenticator(_ webViewAuthenticator: WebViewAuthenticator,
